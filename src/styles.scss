@@ -1,0 +1,12 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  @import url("https://fonts.googleapis.com/css?family=News+Cycle:400,700");
+  @import '~bootstrap/scss/bootstrap-grid';
+  
+  body {
+    background-image: url("./assets/Stars.gif");
+  }

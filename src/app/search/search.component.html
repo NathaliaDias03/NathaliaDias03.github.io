@@ -1,0 +1,57 @@
+<div class="col-md-12 search-box">
+  <div class="input-group">
+    <form (submit)="onSubmit()">
+      <select name="cboTipoBusca" placeholder="Tipo de busca" class="form-control" [(ngModel)]="tipoBusca">
+        <option value="1" selected>Filmes</option>
+        <option value="2">Personagem</option>
+      </select>
+      <input type="text" class="form-control" placeholder="Pesquisar..." name="txtSearch" [(ngModel)]="playerName">
+      <span class="input-group-btn">
+        <button class="btn button--rectangle-out" type="submit">Buscar</button>
+      </span> 
+    </form>
+   </div> 
+</div>
+
+<h5>Busca por filmes</h5>
+
+<div class="col-md-12 box-accordion">
+<mat-accordion *ngIf="result != null && tipoBusca == 1">
+    <mat-expansion-panel *ngFor="let r of result.results">
+        <mat-expansion-panel-header >
+        <b class="title--search">{{ r.title }}</b>
+        
+        </mat-expansion-panel-header>
+        <p><b>Diretor:</b> {{ r.director }} </p>
+        <p><b>Produtor:</b> {{ r.producer }} </p>
+        <p><b>Data de Lançamento:</b> {{ r.release_date }} </p>
+        
+      <br>  
+        <ul style="list-style: none;">
+            <li *ngFor="let f of r.characters let i=index">
+              <div *ngIf="i<3">
+                 <p><b>Personagem:</b>   {{ f | json }} </p>
+            
+              </div>
+            </li>
+        </ul>
+
+        <br><br><br>
+    </mat-expansion-panel>
+</mat-accordion>
+<mat-accordion *ngIf="result != null && tipoBusca == 2">
+  <mat-expansion-panel *ngFor="let r of result.results">
+      <mat-expansion-panel-header>
+          <b class="title--search">{{ r.name }}</b>
+      </mat-expansion-panel-header>
+      <ul style="list-style: none;">
+        <li *ngFor="let f of r.films">
+         <p><b>Filme:</b> {{ f | json }}</p> 
+        </li>
+      </ul>
+      <br><br><br>
+  </mat-expansion-panel>
+</mat-accordion>
+</div>
+
+
